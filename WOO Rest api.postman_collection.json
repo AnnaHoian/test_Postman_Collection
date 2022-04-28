@@ -1,0 +1,1110 @@
+{
+	"info": {
+		"_postman_id": "4c6a2abe-4cfe-4a46-90f6-486ff3862a80",
+		"name": "WOO Rest api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET WOO product",
+			"item": [
+				{
+					"name": "List of products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create WOO product",
+			"item": [
+				{
+					"name": "Create product with name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products?name=NEW Product",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "NEW Product"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not create a product without name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "NEW Product",
+									"disabled": true
+								},
+								{
+									"key": "slug",
+									"value": "https://www.google.com/",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not create a product with string in price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products?name=Product price&price=товар",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Product price"
+								},
+								{
+									"key": "price",
+									"value": "товар"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not create a product without auth",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products?name=NEW Product",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "NEW Product"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not create a product with 100 numbers in regular price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products?name=Product price&regular_price=1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Product price"
+								},
+								{
+									"key": "regular_price",
+									"value": "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not create a product with 100 symbols in name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products?name=Вот пример статьи на 1000 символов. Это достаточно маленький текст, оптимально подходящий для карточек товаров в интернет-магазинах или для небольших информационных публикаций. В таком тексте редко бывает более 2-3 абзацев и обычно один подзаголовок. Но можно и без него. На 1000 символов рекомендовано использовать 1-2 ключа и одну картину.\nТекст на 1000 символов – это сколько примерно слов? Статистика Word показывает, что «тысяча» включает в себя 150-200 слов средней величины. Но, если злоупотреблять предлогами, союзами и другими частями речи на 1-2 символа, то количество слов неизменно возрастает.\nВ копирайтерской деятельности принято считать «тысячи» с пробелами или без. Учет пробелов увеличивает объем текста примерно на 100-200 символов – именно столько раз мы разделяем слова свободным пространством. Считать пробелы заказчики не любят, так как это «пустое место». Однако некоторые фирмы и биржи видят справедливым ставить стоимость за 1000 символов с пробелами, считая последние важным элементом качественного восприятия. Согласитесь, читать слитный текст без единого пропуска, никто не будет. Но большинству нужна цена за 1000 знаков без пробелов.&regular_price=1234",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Вот пример статьи на 1000 символов. Это достаточно маленький текст, оптимально подходящий для карточек товаров в интернет-магазинах или для небольших информационных публикаций. В таком тексте редко бывает более 2-3 абзацев и обычно один подзаголовок. Но можно и без него. На 1000 символов рекомендовано использовать 1-2 ключа и одну картину.\nТекст на 1000 символов – это сколько примерно слов? Статистика Word показывает, что «тысяча» включает в себя 150-200 слов средней величины. Но, если злоупотреблять предлогами, союзами и другими частями речи на 1-2 символа, то количество слов неизменно возрастает.\nВ копирайтерской деятельности принято считать «тысячи» с пробелами или без. Учет пробелов увеличивает объем текста примерно на 100-200 символов – именно столько раз мы разделяем слова свободным пространством. Считать пробелы заказчики не любят, так как это «пустое место». Однако некоторые фирмы и биржи видят справедливым ставить стоимость за 1000 символов с пробелами, считая последние важным элементом качественного восприятия. Согласитесь, читать слитный текст без единого пропуска, никто не будет. Но большинству нужна цена за 1000 знаков без пробелов."
+								},
+								{
+									"key": "regular_price",
+									"value": "1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a product with name and price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products?name=Product cherry&regular_price=40",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Product cherry"
+								},
+								{
+									"key": "regular_price",
+									"value": "40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a product with name, price and image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Product milk\",\r\n\t\"regular_price\": \"90\",\r\n\t\"images\": [\r\n    {\r\n      \"src\": \"https://api.dendro.kyiv.ua/wp-content/uploads/2021/12/T_2_front-1.jpg\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Product milk",
+									"disabled": true
+								},
+								{
+									"key": "regular_price",
+									"value": "90",
+									"disabled": true
+								},
+								{
+									"key": "src",
+									"value": "https://api.dendro.kyiv.ua/wp-content/uploads/2021/12/T_2_front-1.jpg",
+									"disabled": true
+								},
+								{
+									"key": "images",
+									"value": "\"src\": \"https://api.dendro.kyiv.ua/wp-content/uploads/2021/12/T_2_front-1.jpg\"",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not create a product with name and sale price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products?name=Product honey&sale_price=200",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Product honey"
+								},
+								{
+									"key": "sale_price",
+									"value": "200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a product with name, regular and sale price",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products?name=Product sweet&regular_price=200&sale_price=100",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Product sweet"
+								},
+								{
+									"key": "regular_price",
+									"value": "200"
+								},
+								{
+									"key": "sale_price",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Change product",
+			"item": [
+				{
+					"name": "Change product name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1401?id=1401&name=Change name of product",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1401"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1401"
+								},
+								{
+									"key": "name",
+									"value": "Change name of product"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change product price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1401?id=1401&regular_price=100",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1401"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1401"
+								},
+								{
+									"key": "regular_price",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change a product without auth",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1401?id=1401&regular_price=100",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1401"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1401"
+								},
+								{
+									"key": "regular_price",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change delete product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1400?id=1400&regular_price=150",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1400"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1400"
+								},
+								{
+									"key": "regular_price",
+									"value": "150"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change product price to smaller sale price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1401?id=1401&sale_price=50",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1401"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1401"
+								},
+								{
+									"key": "sale_price",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change product price to bigger sale price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1402?id=1402&sale_price=200",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1402"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1402"
+								},
+								{
+									"key": "sale_price",
+									"value": "200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change product price to null sale price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1402?id=1402&sale_price=",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1402"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1402"
+								},
+								{
+									"key": "sale_price",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change product price to string sale price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1401?id=1401&sale_price=saleprice",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1401"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1401"
+								},
+								{
+									"key": "sale_price",
+									"value": "saleprice"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change sale price to smaller sale price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1401?id=1401&sale_price=40",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1401"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1401"
+								},
+								{
+									"key": "sale_price",
+									"value": "40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change sale price to bigger sale price",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1401?id=1401&sale_price=120",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1401"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1401"
+								},
+								{
+									"key": "sale_price",
+									"value": "120"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change product to sale only with date from-to",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1403?id=1403&date_on_sale_from=2021-12-19&date_on_sale_to=2021-12-31",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1403"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1403"
+								},
+								{
+									"key": "date_on_sale_from",
+									"value": "2021-12-19"
+								},
+								{
+									"key": "date_on_sale_to",
+									"value": "2021-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change product to sale with sale price and date from-to",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1403?id=1403&date_on_sale_from=2021-12-19&date_on_sale_to=2021-12-31&sale_price=180",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1403"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1403"
+								},
+								{
+									"key": "date_on_sale_from",
+									"value": "2021-12-19"
+								},
+								{
+									"key": "date_on_sale_to",
+									"value": "2021-12-31"
+								},
+								{
+									"key": "sale_price",
+									"value": "180"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change product to sale with sale price and date from",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1404?id=1404&date_on_sale_from=2021-12-19&sale_price=30",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1404"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1404"
+								},
+								{
+									"key": "date_on_sale_from",
+									"value": "2021-12-19"
+								},
+								{
+									"key": "sale_price",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change product to sale with sale price and date to",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1404?id=1404&date_on_sale_to=2021-12-31&sale_price=40",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1404"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1404"
+								},
+								{
+									"key": "date_on_sale_to",
+									"value": "2021-12-31"
+								},
+								{
+									"key": "sale_price",
+									"value": "40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change product to sale with date from-to in past",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1405?id=1405&date_on_sale_from=2021-11-19&date_on_sale_to=2021-11-31&sale_price=20",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1405"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1405"
+								},
+								{
+									"key": "date_on_sale_from",
+									"value": "2021-11-19"
+								},
+								{
+									"key": "date_on_sale_to",
+									"value": "2021-11-31"
+								},
+								{
+									"key": "sale_price",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change product to sale with date from-to in future",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1405?id=1405&date_on_sale_from=2022-11-19&date_on_sale_to=2022-11-31&sale_price=20",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1405"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1405"
+								},
+								{
+									"key": "date_on_sale_from",
+									"value": "2022-11-19"
+								},
+								{
+									"key": "date_on_sale_to",
+									"value": "2022-11-31"
+								},
+								{
+									"key": "sale_price",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change product to sale with incorrect date format",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1405?id=1406&date_on_sale_from=1-0-&date_on_sale_to=1-0-&sale_price=20",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1405"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1406"
+								},
+								{
+									"key": "date_on_sale_from",
+									"value": "1-0-"
+								},
+								{
+									"key": "date_on_sale_to",
+									"value": "1-0-"
+								},
+								{
+									"key": "sale_price",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not change product to sale with null date format",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1407?id=1407&date_on_sale_from=&date_on_sale_to=&sale_price=20",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1407"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1407"
+								},
+								{
+									"key": "date_on_sale_from",
+									"value": ""
+								},
+								{
+									"key": "date_on_sale_to",
+									"value": ""
+								},
+								{
+									"key": "sale_price",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete product",
+			"item": [
+				{
+					"name": "Delete product by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1400?id=1410",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1400"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1410"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Can not  delete a product without auth",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1400?id=1400",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1400"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1400"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product by id what was deleted before",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{WOO_URL}}/wp-json/wc/v3/products/1398?id=1398",
+							"host": [
+								"{{WOO_URL}}"
+							],
+							"path": [
+								"",
+								"wp-json",
+								"wc",
+								"v3",
+								"products",
+								"1398"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1398"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "1",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "testnotcorrect",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "WOO_URL",
+			"value": "https://api.dendro.kyiv.ua"
+		}
+	]
+}
